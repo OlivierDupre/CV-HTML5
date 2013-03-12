@@ -28,6 +28,14 @@ $('#choix_recherche').keyup(function() {
     if ($(this).val().length <= 3)
         return;
     
+    delPreviousSearch();
+ 
     var content = $('.tab-content .tab-pane.active').html();
-    $('.tab-content .tab-pane.active').html(content.replace(new RegExp($(this).val(), 'g'), "<span class='highlight'>" + $(this).val() + "</span>"));
+    $('.tab-content .tab-pane.active').html(content.replace(new RegExp($(this).val(), 'g'), "<span class='highlight' data='searchResult'>" + $(this).val() + "</span>"));
 });
+
+function delPreviousSearch() {
+    
+    $('[data="searchResult"]').replaceWith($(this).text());
+      
+}
